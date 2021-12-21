@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import Header from './components/Header'
 import Modal from './components/Modal'
+import { createId } from './helpers'
 import newExpenseIcon from './img/nuevo-gasto.svg'
 
 
@@ -12,6 +13,8 @@ function App() {
 
   const [modal, setModal] = useState(false)
   const [modalAnimation, setModalAnimation] = useState(false)
+
+  const [expenses, setExpenses] = useState([])
   
   const handleNewExpense = () => {
     setModal(true)
@@ -19,7 +22,15 @@ function App() {
     setTimeout(()=> {
       setModalAnimation(true)
     },500)
+  }
 
+  const saveExpense = expense => {
+    expense.id = createId()
+    setExpenses([...expenses, expense])
+    setModalAnimation(false);
+    setTimeout(() => {
+        setModal(false);
+    }, 500);
   }
 
   return (
@@ -46,6 +57,7 @@ function App() {
           setModal = {setModal}
           modalAnimation = {modalAnimation}
           setModalAnimation = {setModalAnimation}
+          saveExpense = {saveExpense}
         />}
       
     </div>
