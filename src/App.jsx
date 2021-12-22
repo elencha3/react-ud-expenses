@@ -32,6 +32,7 @@ function App() {
                 expenseState.id === expense.id ? expense : expenseState
             );
             setExpenses(expensesUpdated);
+            setEditExpense({})
         } else {
             //Añadir
             expense.id = createId();
@@ -44,6 +45,11 @@ function App() {
             setModal(false);
         }, 500);
     };
+
+    const deleteExpense = (id) => {
+        const expensesUpdated = expenses.filter( expense  => expense.id !== id)
+        setExpenses(expensesUpdated)
+    }
 
     useEffect(() => {
         if (Object.keys(editExpense).length > 0) {
@@ -72,6 +78,7 @@ function App() {
                             expenses={expenses}
                             editExpense={editExpense}
                             setEditExpense={setEditExpense}
+                            deleteExpense ={deleteExpense}
                         />
                     </main>
                     <div className="nuevo-gasto">
@@ -91,6 +98,7 @@ function App() {
                     setModalAnimation={setModalAnimation}
                     saveExpense={saveExpense}
                     editExpense={editExpense}
+                    setEditExpense={setEditExpense}
                 />
             )}
         </div>

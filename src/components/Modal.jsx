@@ -3,7 +3,7 @@ import Mensaje from "./Mensaje";
 import CloseBtn from "../img/cerrar.svg";
 
 
-const Modal = ({ setModal, modalAnimation, setModalAnimation, saveExpense, editExpense }) => {
+const Modal = ({ setModal, modalAnimation, setModalAnimation, saveExpense, editExpense, setEditExpense }) => {
     
     //State para mensaje
     const [message, setMessage] = useState('')
@@ -28,6 +28,7 @@ const Modal = ({ setModal, modalAnimation, setModalAnimation, saveExpense, editE
     
     const hideModal = () => {
         setModalAnimation(false);
+        setEditExpense({})
         setTimeout(() => {
             setModal(false);
         }, 500);
