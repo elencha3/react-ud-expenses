@@ -33,7 +33,7 @@ const Expense = ({ expense }) => {
                     </p>
                 </div>
             </div>
-            <p className="cantidad-gasto">{formatCurrency(amount)}</p>
+            <p className="cantidad-gasto">{amount}</p>
         </div>
     );
 };

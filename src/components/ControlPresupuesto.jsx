@@ -1,12 +1,20 @@
-import React from 'react'
-import { formatCurrency } from '../helpers'
+import { useState, useEffect } from "react";
+import { formatCurrency } from "../helpers";
 
-const ControlPresupuesto = ({presupuesto, setPresupuesto}) => {
+const ControlPresupuesto = ({ presupuesto, setPresupuesto, expenses }) => {
+    const [available, setAvailable] = useState(0);
+    const [spent, setSpent] = useState(0);
 
-    
+    useEffect(() => {
+        const totalSpent = expenses.reduce(
+            (total, expense) => expense.amount + total, 0
+        );
+        console.log( totalSpent)
+        setSpent(totalSpent)
+    }, [expenses]);
 
     return (
-        <div className='contenedor-presupuesto contenedor sombra dos-columnas'>
+        <div className="contenedor-presupuesto contenedor sombra dos-columnas">
             <div>
                 <p>Gráfica aquí</p>
             </div>
@@ -15,14 +23,14 @@ const ControlPresupuesto = ({presupuesto, setPresupuesto}) => {
                     <span>Presupuesto: </span> {formatCurrency(presupuesto)}
                 </p>
                 <p>
-                    <span>Disponible: </span> {formatCurrency(0)}
+                    <span>Disponible: </span> {formatCurrency(available)}
                 </p>
                 <p>
-                    <span>Gastado: </span> {formatCurrency(0)}
+                    <span>Gastado: </span> {formatCurrency(spent)}
                 </p>
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default ControlPresupuesto
+export default ControlPresupuesto;

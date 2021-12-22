@@ -10,7 +10,7 @@ const Modal = ({ setModal, modalAnimation, setModalAnimation, saveExpense }) => 
 
     //States para el form
     const [name, setName] = useState('')
-    const [amount, setAmount] = useState('')
+    const [amount, setAmount] = useState(0)
     const [category, setCategory] = useState('')
     
     const hideModal = () => {
