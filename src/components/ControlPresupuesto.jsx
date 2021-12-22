@@ -1,13 +1,9 @@
 import React from 'react'
+import { formatCurrency } from '../helpers'
 
 const ControlPresupuesto = ({presupuesto, setPresupuesto}) => {
 
-    const formatCantidad = cantidad => {
-        return cantidad.toLocaleString('es-ES', {
-            style: 'currency',
-            currency: 'EUR'
-        })
-    }
+    
 
     return (
         <div className='contenedor-presupuesto contenedor sombra dos-columnas'>
@@ -16,13 +12,13 @@ const ControlPresupuesto = ({presupuesto, setPresupuesto}) => {
             </div>
             <div className="contenido-presupuesto">
                 <p>
-                    <span>Presupuesto: </span> {formatCantidad(presupuesto)}
+                    <span>Presupuesto: </span> {formatCurrency(presupuesto)}
                 </p>
                 <p>
-                    <span>Disponible: </span> {formatCantidad(0)}
+                    <span>Disponible: </span> {formatCurrency(0)}
                 </p>
                 <p>
-                    <span>Gastado: </span> {formatCantidad(0)}
+                    <span>Gastado: </span> {formatCurrency(0)}
                 </p>
             </div>
         </div>

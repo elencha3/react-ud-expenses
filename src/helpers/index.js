@@ -6,3 +6,21 @@ export const  createId = () => {
 
     return random + date
 }
+
+export const formatDate = date => {
+    const newDate = new Date(date);
+    const dateOptions = {
+        year: 'numeric',
+        month : 'long',
+        day : '2-digit'
+    }
+
+    return newDate.toLocaleDateString('es-ES', dateOptions)
+}
+
+export const formatCurrency = amount => {
+    return amount.toLocaleString('es-ES', {
+        style: 'currency',
+        currency: 'EUR'
+    })
+}

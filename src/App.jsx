@@ -1,68 +1,71 @@
-import { useState } from 'react'
-import Header from './components/Header'
-import Modal from './components/Modal'
-import { createId } from './helpers'
-import newExpenseIcon from './img/nuevo-gasto.svg'
-
-
+import { useState } from "react";
+import Header from "./components/Header";
+import Modal from "./components/Modal";
+import ExpensesList from "./components/ExpensesList";
+import { createId } from "./helpers";
+import newExpenseIcon from "./img/nuevo-gasto.svg";
 
 function App() {
-  
-  const [presupuesto, setPresupuesto] = useState(0)
-  const [isValid, setIsValid] = useState(false)
+    const [presupuesto, setPresupuesto] = useState(0);
+    const [isValid, setIsValid] = useState(false);
 
-  const [modal, setModal] = useState(false)
-  const [modalAnimation, setModalAnimation] = useState(false)
+    const [modal, setModal] = useState(false);
+    const [modalAnimation, setModalAnimation] = useState(false);
 
-  const [expenses, setExpenses] = useState([])
-  
-  const handleNewExpense = () => {
-    setModal(true)
+    const [expenses, setExpenses] = useState([]);
 
-    setTimeout(()=> {
-      setModalAnimation(true)
-    },500)
-  }
+    const handleNewExpense = () => {
+        setModal(true);
 
-  const saveExpense = expense => {
-    expense.id = createId()
-    setExpenses([...expenses, expense])
-    setModalAnimation(false);
-    setTimeout(() => {
-        setModal(false);
-    }, 500);
-  }
+        setTimeout(() => {
+            setModalAnimation(true);
+        }, 500);
+    };
 
-  return (
-    <div>
-      <Header 
-        presupuesto = {presupuesto}
-        setPresupuesto = {setPresupuesto}
-        isValid = {isValid}
-        setIsValid = {setIsValid}
-      />
+    const saveExpense = (expense) => {
+        expense.id = createId();
+        expense.date = Date.now()
+        setExpenses([...expenses, expense]);
+        setModalAnimation(false);
+        setTimeout(() => {
+            setModal(false);
+        }, 500);
+    };
 
-      {isValid && (
-        <div className="nuevo-gasto">
-          <img 
-            src={newExpenseIcon} 
-            alt="Icono nuevo gasto"
-            onClick={handleNewExpense} 
+    return (
+        <div className={modal && 'fijar'}>
+            <Header
+                presupuesto={presupuesto}
+                setPresupuesto={setPresupuesto}
+                isValid={isValid}
+                setIsValid={setIsValid}
             />
-        </div>
-      )}
 
-      {modal && 
-        <Modal 
-          setModal = {setModal}
-          modalAnimation = {modalAnimation}
-          setModalAnimation = {setModalAnimation}
-          saveExpense = {saveExpense}
-        />}
-      
-    </div>
-    
-  )
+            {isValid && (
+                <>
+                    <main>
+                        <ExpensesList expenses={expenses} />
+                    </main>
+                    <div className="nuevo-gasto">
+                        <img
+                            src={newExpenseIcon}
+                            alt="Icono nuevo gasto"
+                            onClick={handleNewExpense}
+                        />
+                    </div>
+                </>
+            )}
+
+            {modal && (
+                <Modal
+                    setModal={setModal}
+                    modalAnimation={modalAnimation}
+                    setModalAnimation={setModalAnimation}
+                    saveExpense={saveExpense}
+                />
+            )}
+        </div>
+    );
 }
 
-export default App
+export default App;
