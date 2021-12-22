@@ -12,6 +12,8 @@ const Modal = ({ setModal, modalAnimation, setModalAnimation, saveExpense, editE
     const [name, setName] = useState('')
     const [amount, setAmount] = useState(0)
     const [category, setCategory] = useState('')
+    const [id, setId] = useState('')
+    const [date, setDate] = useState('')
 
     //Para cuando el componente esté listo - para la edición
     useEffect(() => {
@@ -19,6 +21,8 @@ const Modal = ({ setModal, modalAnimation, setModalAnimation, saveExpense, editE
             setName(editExpense.name)
             setAmount(editExpense.amount)
             setCategory(editExpense.category)
+            setId(editExpense.id)
+            setDate(editExpense.date)
         }
     }, [])
     
@@ -40,7 +44,7 @@ const Modal = ({ setModal, modalAnimation, setModalAnimation, saveExpense, editE
             return
         }
 
-        saveExpense({name, amount, category})
+        saveExpense({name, amount, category, id, date})
 
     }
 
@@ -53,7 +57,7 @@ const Modal = ({ setModal, modalAnimation, setModalAnimation, saveExpense, editE
                 className={`formulario ${modalAnimation ? "animar" : "cerrar"}`}
                 onSubmit={handleSubmit}
             >
-                <legend>Nuevo gasto</legend>
+                <legend>{editExpense.name ? "Editar gasto" : "Nuevo Gasto"}</legend>
                 {message && <Mensaje tipo="error">{message}</Mensaje>}
                 <div className="campo">
                     <label htmlFor="name">Nombre Gasto</label>
@@ -93,7 +97,7 @@ const Modal = ({ setModal, modalAnimation, setModalAnimation, saveExpense, editE
                 </div>
                 <input 
                 type="submit"
-                value="Añadir gasto" />
+                value={editExpense.name ? 'Guardar cambios' : 'Añadir Gasto'} />
             </form>
         </div>
     );
