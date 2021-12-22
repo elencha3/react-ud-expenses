@@ -1,9 +1,9 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import Mensaje from "./Mensaje";
 import CloseBtn from "../img/cerrar.svg";
 
 
-const Modal = ({ setModal, modalAnimation, setModalAnimation, saveExpense }) => {
+const Modal = ({ setModal, modalAnimation, setModalAnimation, saveExpense, editExpense }) => {
     
     //State para mensaje
     const [message, setMessage] = useState('')
@@ -12,6 +12,15 @@ const Modal = ({ setModal, modalAnimation, setModalAnimation, saveExpense }) => 
     const [name, setName] = useState('')
     const [amount, setAmount] = useState(0)
     const [category, setCategory] = useState('')
+
+    //Para cuando el componente esté listo - para la edición
+    useEffect(() => {
+        if (Object.keys(editExpense).length > 0 ){
+            setName(editExpense.name)
+            setAmount(editExpense.amount)
+            setCategory(editExpense.category)
+        }
+    }, [])
     
     const hideModal = () => {
         setModalAnimation(false);

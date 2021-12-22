@@ -1,4 +1,12 @@
 import React from "react";
+import {
+    LeadingActions,
+    SwipeableListItem,
+    SwipeableList,
+    SwipeAction,
+    TrailingActions,
+} from "react-swipeable-list";
+import "react-swipeable-list/dist/styles.css";
 import { formatDate, formatCurrency } from "../helpers";
 
 import savingIcon from "../img/icono_ahorro.svg";
@@ -19,22 +27,58 @@ const iconsDictionary = {
     suscripciones: subscriptionsIcon,
 };
 
-const Expense = ({ expense }) => {
+const Expense = ({ expense, setEditExpense }) => {
     const { name, amount, category, id, date } = expense;
+
+    const leadingActions = () => (
+
+        <LeadingActions>
+            <SwipeAction
+                onClick={() => {
+                    setEditExpense(expense)
+                }}
+            >
+                Editar
+            </SwipeAction>
+        </LeadingActions>
+    );
+
+    const trailingActions = () => (
+        <TrailingActions>
+            <SwipeAction
+                onClick={() => {
+                    console.log("editando");
+                }}
+            >
+                Eliminar
+            </SwipeAction>
+        </TrailingActions>
+    );
+
     return (
-        <div className="gasto sombra">
-            <div className="contenido-gasto">
-                <img src={iconsDictionary[category]} alt="Iconos categorías" />
-                <div className="descripcion-gasto">
-                    <p className="categoria">{category}</p>
-                    <p className="nombre-gasto">{name}</p>
-                    <p className="fecha-gasto">
-                        Fecha: <span>{formatDate(date)}</span>
-                    </p>
+        <SwipeableList>
+            <SwipeableListItem
+                leadingActions={leadingActions()}
+                trailingActions={trailingActions()}
+            >
+                <div className="gasto sombra">
+                    <div className="contenido-gasto">
+                        <img
+                            src={iconsDictionary[category]}
+                            alt="Iconos categorías"
+                        />
+                        <div className="descripcion-gasto">
+                            <p className="categoria">{category}</p>
+                            <p className="nombre-gasto">{name}</p>
+                            <p className="fecha-gasto">
+                                Fecha: <span>{formatDate(date)}</span>
+                            </p>
+                        </div>
+                    </div>
+                    <p className="cantidad-gasto">{formatCurrency(amount)}</p>
                 </div>
-            </div>
-            <p className="cantidad-gasto">{amount}</p>
-        </div>
+            </SwipeableListItem>
+        </SwipeableList>
     );
 };
 

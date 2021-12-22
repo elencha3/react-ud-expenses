@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Header from "./components/Header";
 import Modal from "./components/Modal";
 import ExpensesList from "./components/ExpensesList";
@@ -14,8 +14,11 @@ function App() {
 
     const [expenses, setExpenses] = useState([]);
 
+    const [editExpense, setEditExpense] = useState({});
+
     const handleNewExpense = () => {
         setModal(true);
+        setEditExpense({});
 
         setTimeout(() => {
             setModalAnimation(true);
@@ -24,7 +27,7 @@ function App() {
 
     const saveExpense = (expense) => {
         expense.id = createId();
-        expense.date = Date.now()
+        expense.date = Date.now();
         setExpenses([...expenses, expense]);
         setModalAnimation(false);
         setTimeout(() => {
@@ -32,10 +35,20 @@ function App() {
         }, 500);
     };
 
+    useEffect(() => {
+        if (Object.keys(editExpense).length > 0) {
+            setModal(true);
+
+            setTimeout(() => {
+                setModalAnimation(true);
+            }, 500);
+        }
+    }, [editExpense]);
+
     return (
-        <div className={modal ? 'fijar' : ''}>
+        <div className={modal ? "fijar" : ""}>
             <Header
-                expenses = {expenses}
+                expenses={expenses}
                 presupuesto={presupuesto}
                 setPresupuesto={setPresupuesto}
                 isValid={isValid}
@@ -45,7 +58,11 @@ function App() {
             {isValid && (
                 <>
                     <main>
-                        <ExpensesList expenses={expenses} />
+                        <ExpensesList
+                            expenses={expenses}
+                            editExpense={editExpense}
+                            setEditExpense={setEditExpense}
+                        />
                     </main>
                     <div className="nuevo-gasto">
                         <img
@@ -63,6 +80,7 @@ function App() {
                     modalAnimation={modalAnimation}
                     setModalAnimation={setModalAnimation}
                     saveExpense={saveExpense}
+                    editExpense={editExpense}
                 />
             )}
         </div>
