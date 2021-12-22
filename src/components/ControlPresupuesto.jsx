@@ -9,7 +9,10 @@ const ControlPresupuesto = ({ presupuesto, setPresupuesto, expenses }) => {
         const totalSpent = expenses.reduce(
             (total, expense) => expense.amount + total, 0
         );
-        console.log( totalSpent)
+
+        const totalAvailable = presupuesto - totalSpent;
+        
+        setAvailable(totalAvailable)
         setSpent(totalSpent)
     }, [expenses]);
 
