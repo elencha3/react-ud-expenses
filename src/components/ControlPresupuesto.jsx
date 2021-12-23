@@ -45,16 +45,16 @@ const ControlPresupuesto = ({ presupuesto, setPresupuesto, expenses, setExpenses
             <div>
                 <CircularProgressbar
                     styles={buildStyles({
-                        pathColor: percentage > 100 ? '#dc2626' :  "#3b82f6", 
+                        pathColor: percentage > 100 ? '#dc2626' :  "#9139f5", 
                         trailColor: "#f5f5f5",
-                        textColor: percentage > 100 ? '#dc2626' :  "#3b82f6", 
+                        textColor: percentage > 100 ? '#dc2626' :  "#9139f5", 
                     })}
                     value={percentage}
                     text={`${percentage}%`}
                 />
             </div>
             <div className="contenido-presupuesto">
-                <button className="reset-app" type="button" onClick={handleResetApp}>Resetear app</button>
+                <button className="reset-app" type="button" onClick={handleResetApp}>Reset</button>
                 <p>
                     <span>Presupuesto: </span> {formatCurrency(presupuesto)}
                 </p>

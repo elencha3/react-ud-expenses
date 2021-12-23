@@ -1,5 +1,5 @@
 :root {
-    --azul: #3b82f6;
+    --azul: #984bf1;
     --blanco: #ffffff;
     --gris-claro: #f5f5f5;
     --gris: #94a3b8;
@@ -215,19 +215,19 @@ header h1 {
 }
 .reset-app {
     border: none;
-    background-color: #db2777;
+    background-color: #90907d;
     padding: 1rem;
     width: 100%;
     text-align: center;
     color: var(--blanco);
     text-transform: uppercase;
-    font-weight: 900;
+    font-weight: 500;
     border-radius: 1rem;
     transition-property: background-color;
     transition-duration: 300ms;
 }
 .reset-app:hover {
-    background-color: #c71465;
+    background-color: #9139f5;
     cursor: pointer;
 }
 
@@ -241,8 +241,8 @@ main {
     gap: 2rem;
 }
 .filtros label {
-    font-size: 3rem;
-    font-weight: 900;
+    font-size: 2rem;
+    font-weight: 500;
     color: var(--gris-oscuro);
 }
 .filtros select {
@@ -250,7 +250,7 @@ main {
     padding: 1rem;
     border: none;
     border-radius: 1rem;
-    text-align: center;
+    text-align: left;
     background-color: var(--gris-claro);
 }
 
@@ -259,7 +259,7 @@ main {
 }
 .listado-gastos h2 {
     color: var(--gris-oscuro);
-    font-weight: 900;
+    font-weight: 700;
 }
 .no-gastos {
     text-align: center;
@@ -278,7 +278,7 @@ main {
 .cantidad-gasto {
     font-size: 2.4rem;
     color: var(--negro);
-    font-weight: 900;
+    font-weight: 700;
 }
 
 .contenido-gasto {
@@ -296,8 +296,8 @@ main {
 }
 .descripcion-gasto .categoria {
     color: var(--gris);
-    font-size: 1.6rem;
-    font-weight: 900;
+    font-size: 2rem;
+    font-weight: 700;
     text-transform: uppercase;
 }
 .descripcion-gasto p {
@@ -305,15 +305,15 @@ main {
 }
 .descripcion-gasto .nombre-gasto {
     color: var(--gris-oscuro);
-    font-size: 2.4rem;
-    font-weight: 700;
+    font-size: 2rem;
+    font-weight: 600;
 }
 .descripcion-gasto .nombre-gasto:hover {
     cursor: pointer;
 }
 .descripcion-gasto .fecha-gasto {
     font-size: 1.8rem;
-    font-weight: 900;
+    font-weight: 600;
     color: var(--gris-oscuro);
 }
 .descripcion-gasto .fecha-gasto span {
